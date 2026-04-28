@@ -33,9 +33,23 @@
 .hyperframe-cache/
 
 # 렌더 산출물
-06-output/*
-!06-output/INDEX.md
-!06-output/.gitkeep
+**/06-output/*
+!**/06-output/INDEX.md
+!**/06-output/.gitkeep
+# 프리뷰(애니매틱)는 작아서 git에 포함
+!**/06-output/preview_*.mp4
+!**/06-output/preview_clips/
+**/06-output/preview_clips/_frames/
+!**/06-output/preview_clips/*.mp4
+!**/06-output/preview_clips/*.txt
+!**/06-output/preview_thumbs/
+!**/06-output/preview_thumbs/*.jpg
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
 
 # OS / 에디터
 .DS_Store
