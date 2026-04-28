@@ -1,0 +1,8 @@
+slug: TEMPLATE
+title: "프로젝트 한국어 제목"
+created: YYYY-MM-DD
+status: planning   # planning | scripting | recording | editing | done
+target_platform: "YouTube Shorts 9:16"
+target_duration_sec: 60
+owner: ""
+notes: ""

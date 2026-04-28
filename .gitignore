@@ -1,0 +1,46 @@
+# 미디어 / 바이너리는 git에 보관하지 않음 (INDEX.md 로 추적)
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+*.wav
+*.aif
+*.aiff
+*.mp3
+*.flac
+*.ogg
+*.psd
+*.ai
+*.sketch
+*.fig
+*.prproj
+*.aep
+*.afdesign
+*.afphoto
+
+# 이미지(중대형) — 작은 아이콘은 예외 처리하려면 !path 로 추가
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.gif
+*.bmp
+
+# 하이퍼프레임 프로젝트 캐시(파일 확장자 확정 후 조정)
+*.hframe-cache
+.hyperframe-cache/
+
+# 렌더 산출물
+06-output/*
+!06-output/INDEX.md
+!06-output/.gitkeep
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
