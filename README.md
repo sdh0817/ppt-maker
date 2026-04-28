@@ -13,6 +13,7 @@
 | 0. 기획 | `00-plan/` | Claude (지시받아) | `concept.md`, `storyboard.md`, `edit-plan.md` |
 | 1. 스크립트 | `01-script/` | Claude | `script.md` (낭독용 본문 + 호흡 표시) |
 | 2. 음성 녹음 | `02-recordings/` | 사용자 | `*.mp4` (낭독 녹음) + `INDEX.md` |
+| 2.5 전사 | `02-recordings/transcripts/` | Whisper Large v3 | `*.txt` / `*.srt` / `*.json` (단어 타임스탬프) |
 | 3. 원본 영상 | `03-source/` | 사용자 | `*.mp4` (참고/소스 영상) + `INDEX.md` |
 | 4. 모션 에셋 | `04-motion-assets/` | Claude/툴 | 얼굴 없는 모션 애니메이션 클립, 일러스트 |
 | 5. 편집 | `05-edit/` | 하이퍼프레임 | 하이퍼프레임 프로젝트 파일, 트랙 노트 |
@@ -38,8 +39,22 @@ ppt-maker/
 │   ├── motion-presets/        # 재사용 모션/트랜지션 프리셋
 │   └── brand/                 # 로고/폰트/컬러 등 공용 자산
 └── tools/
-    └── new-project.sh         # 새 프로젝트 부트스트랩
+    ├── new-project.sh         # 새 프로젝트 부트스트랩
+    ├── transcribe.py          # Whisper Large v3 전사
+    └── requirements.txt       # 전사 도구 의존성
 ```
+
+## Whisper Large v3 전사
+
+녹음(`02-recordings/*.mp4`)이 도착하면 다음 명령으로 자막 + 단어 타임스탬프를 생성합니다.
+
+```bash
+pip install -r tools/requirements.txt   # 한 번만
+./tools/transcribe.py projects/<slug>/02-recordings/S01_take02.mp4 \
+    -o projects/<slug>/02-recordings/transcripts -l ko
+```
+
+생성물(`.txt` / `.srt` / `.json`)은 자막과 편집 컷포인트 갱신에 그대로 사용됩니다.
 
 ## 새 프로젝트 시작
 

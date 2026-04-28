@@ -74,6 +74,39 @@ Claude(기획·스크립트·신별 편집 지시)의 역할이 단계별로 분
 
 ---
 
+## 2.5 전사 (Whisper Large v3)
+
+**담당:** 자동 (`tools/transcribe.py`)
+**산출물:** `02-recordings/transcripts/<stem>.txt | .srt | .json`
+
+녹음이 들어오면 즉시 Whisper Large v3 로 전사합니다. 결과 3종이 생성됩니다.
+
+- `.txt` 전체 텍스트 (스크립트와 비교용)
+- `.srt` 자막 (그대로 `06-output/`에서 사용 가능)
+- `.json` 단어 단위 타임스탬프 (`edit-plan.md`의 VO 컷 포인트 갱신용)
+
+```bash
+# 한 번만:
+pip install -r tools/requirements.txt
+
+# 사용:
+./tools/transcribe.py projects/<slug>/02-recordings/S01_take02.mp4 \
+    -o projects/<slug>/02-recordings/transcripts \
+    -l ko \
+    --initial-prompt "하이퍼프레임, 모션 그래픽"
+```
+
+옵션:
+- `-l ko` 한국어 (기본). 다른 언어는 ISO 639-1 코드.
+- `--device cuda` GPU 사용 시. 미설정 시 자동 감지.
+- `--compute-type float16` GPU 메모리 절약. CPU는 `int8` 권장.
+- `--initial-prompt` 도메인 용어 힌트 (전문용어 인식률 향상).
+
+전사 결과의 단어 타임스탬프(json) 를 보고 `00-plan/edit-plan.md`의
+VO 컷 포인트(예: `00:00.0–00:03.8`)를 실제 발화 시간으로 갱신합니다.
+
+---
+
 ## 3. 원본 영상 (`03-source/`)
 
 **담당:** 사용자
